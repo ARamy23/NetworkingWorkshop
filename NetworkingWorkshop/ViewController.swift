@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Moya
 
 class ViewController: UIViewController {
 
@@ -14,40 +15,43 @@ class ViewController: UIViewController {
     
     let cellId = "cellId"
     
-    var datasource = [Timeline]()
+    var timelines = [Timeline]()
+    {
+        didSet
+        {
+            loopBackTableView.reloadData()
+        }
+    }
+    
+    let provider = MoyaProvider<TimelineService>(plugins: [NetworkLoggerPlugin(verbose: true)])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         loopBackTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        fetchTimeline()
+        getTimelines()
+        
     }
     
-    fileprivate func fetchTimeline()
+    func getTimelines()
     {
-        let urlString = "https://nodeswiftcairo.herokuapp.com/api/timelines"
-        guard let url = URL(string: urlString) else { return }
-        let urlRequest = URLRequest(url: url)
-        
-        URLSession.shared.dataTask(with: urlRequest) { [weak self] (data, response, err) in
-            if let err = err
+        provider.request(.getAll) { [weak self] (result) in
+            switch result
             {
-                print(err)
-                return
-            }
-            guard let data = data else { return }
-            do
-            {
-                let timelines = try JSONDecoder().decode([Timeline].self, from: data)
-                self?.datasource = timelines
-                
-                DispatchQueue.main.async { self?.loopBackTableView.reloadData() }
-            }
-            catch let err
-            {
+            case .success(let response):
+                do
+                {
+                    let timelines = try JSONDecoder().decode([Timeline].self, from: response.data)
+                    self?.timelines = timelines
+                }
+                catch let err
+                {
+                    print(err)
+                }
+            case .failure(let err):
                 print(err)
             }
-        }.resume()
+        }
     }
 
 }
@@ -55,12 +59,12 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate, UITableViewDataSource
 {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource.count
+        return timelines.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId)!
-        let timeline = datasource[indexPath.row]
+        let timeline = timelines[indexPath.row]
         let attributedText = NSMutableAttributedString(string: "date: \(String(describing: timeline.date ?? "No Date"))\n", attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14)])
         attributedText.append(NSAttributedString(string: "text: \(String(describing: timeline.text ?? "No text"))\n"))
         attributedText.append(NSAttributedString(string: "userId: \(String(describing: timeline.id ?? 0))\n"))
