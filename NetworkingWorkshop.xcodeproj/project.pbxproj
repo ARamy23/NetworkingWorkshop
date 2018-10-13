@@ -15,7 +15,8 @@
 		E284C11A2170F41700B78190 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E284C1182170F41700B78190 /* LaunchScreen.storyboard */; };
 		E284C1222170F53100B78190 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284C1212170F53100B78190 /* Model.swift */; };
 		E284C1252171010300B78190 /* ServerPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284C1242171010300B78190 /* ServerPath.swift */; };
-		E284C127217101B300B78190 /* LoopBack Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284C126217101B300B78190 /* LoopBack Services.swift */; };
+		E284C127217101B300B78190 /* Timeline Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E284C126217101B300B78190 /* Timeline Service.swift */; };
+		E2D0723F2172200300D6398B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D0723E2172200300D6398B /* UserService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +32,8 @@
 		E284C11B2170F41700B78190 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E284C1212170F53100B78190 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E284C1242171010300B78190 /* ServerPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerPath.swift; sourceTree = "<group>"; };
-		E284C126217101B300B78190 /* LoopBack Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoopBack Services.swift"; sourceTree = "<group>"; };
+		E284C126217101B300B78190 /* Timeline Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timeline Service.swift"; sourceTree = "<group>"; };
+		E2D0723E2172200300D6398B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				E284C1242171010300B78190 /* ServerPath.swift */,
-				E284C126217101B300B78190 /* LoopBack Services.swift */,
+				E284C126217101B300B78190 /* Timeline Service.swift */,
+				E2D0723E2172200300D6398B /* UserService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -223,7 +226,8 @@
 			files = (
 				E284C1222170F53100B78190 /* Model.swift in Sources */,
 				E284C1122170F41500B78190 /* ViewController.swift in Sources */,
-				E284C127217101B300B78190 /* LoopBack Services.swift in Sources */,
+				E2D0723F2172200300D6398B /* UserService.swift in Sources */,
+				E284C127217101B300B78190 /* Timeline Service.swift in Sources */,
 				E284C1102170F41500B78190 /* AppDelegate.swift in Sources */,
 				E284C1252171010300B78190 /* ServerPath.swift in Sources */,
 			);

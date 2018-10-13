@@ -10,7 +10,7 @@ import Foundation
 
 struct ServerPath
 {
-    static let baseURL = "https://nodeswiftcairo.herokuapp.com/api"
+    static let baseURL = URL(string: "https://nodeswiftcairo.herokuapp.com/api")!
     static let timelines = "/timelines"
     static let users = "/users"
 }

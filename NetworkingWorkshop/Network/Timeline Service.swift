@@ -18,7 +18,7 @@ enum TimelineService
 extension TimelineService: TargetType
 {
     var baseURL: URL {
-        return URL(string: ServerPath.baseURL)!
+        return ServerPath.baseURL
     }
     
     var path: String {
@@ -60,7 +60,7 @@ extension TimelineService: TargetType
     
 }
 
-private extension String {
+extension String {
     var urlEscaped: String {
         return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
     }
